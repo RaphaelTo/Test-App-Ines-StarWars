@@ -41,5 +41,24 @@ describe('test class Connection', () => {
     expect(mongo).toEqual({});
   })
 
+  test('method atMongoDB throw error if connection doesnt work', async () => {
+    const objectToGiveAtConnection: IConnection = {
+      username: "string",
+      password: "string",
+      host: "string",
+      port: 1,
+      database: "string"
+    };
+    const instanceConnection: Connection = new Connection(objectToGiveAtConnection);
 
+    // @ts-ignore
+    mockedMongoose.connect.mockRejectedValue(new Error('ECONNREFUSED'));
+
+    try{
+      await instanceConnection.atMongoDB();
+    }catch (e) {
+      expect(mockedMongoose.connect).toHaveBeenCalledTimes(1);
+      expect(e).toBe(/ECONNREFUSED/);
+    }
+  })
 })
