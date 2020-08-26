@@ -1,17 +1,26 @@
-interface ConnectionStructure {
-  username: string,
-  password: string,
-  host: string,
-  port: number,
-  database: string
-};
+import mongoose from 'mongoose';
+import IConnection from '../Interfaces/IConnection';
 
-class Connection {
-  private _log: ConnectionStructure;
+class Connection implements IConnection{
+  public username: string;
+  public password: string;
+  public host: string;
+  public port: number;
+  public database: string;
 
-  constructor(log: ConnectionStructure) {
-    this._log = log;
+  constructor(log: IConnection) {
+    this.username = log.username;
+    this.password = log.password;
+    this.host = log.host;
+    this.port = log.port;
+    this.database = log.database; 
   }
+
+  public async atMongoDB(): Promise<typeof mongoose> {
+    return await mongoose.connect(`mongodb://${this.username}:${this.password}@${this.host}:${this.port}/${this.database}?authSource=admin`,
+      { useNewUrlParser: true, useUnifiedTopology: true });
+  }
+
 }
 
 export default Connection;
