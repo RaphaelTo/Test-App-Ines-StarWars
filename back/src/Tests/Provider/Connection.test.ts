@@ -13,7 +13,7 @@ describe('test class Connection', () => {
       username: "string",
       password: "string",
       host: "string",
-      port: 1,
+      port: "1",
       database: "string"
     };
 
@@ -27,7 +27,7 @@ describe('test class Connection', () => {
       username: "string",
       password: "string",
       host: "string",
-      port: 1,
+      port: "1",
       database: "string"
     };
     const instanceConnection: Connection = new Connection(objectToGiveAtConnection);
@@ -46,7 +46,7 @@ describe('test class Connection', () => {
       username: "string",
       password: "string",
       host: "string",
-      port: 1,
+      port: "1",
       database: "string"
     };
     const instanceConnection: Connection = new Connection(objectToGiveAtConnection);

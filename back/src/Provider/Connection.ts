@@ -2,11 +2,11 @@ import mongoose from 'mongoose';
 import IConnection from '../Interfaces/IConnection';
 
 class Connection implements IConnection{
-  public username: string;
-  public password: string;
-  public host: string;
-  public port: number;
-  public database: string;
+  public username ?: string;
+  public password ?: string;
+  public host ?: string;
+  public port ?: string;
+  public database ?: string;
 
   constructor(log: IConnection) {
     this.username = log.username;
