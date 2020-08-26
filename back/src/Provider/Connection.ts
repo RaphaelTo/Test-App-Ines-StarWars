@@ -17,8 +17,12 @@ class Connection implements IConnection{
   }
 
   public async atMongoDB(): Promise<typeof mongoose> {
-    return await mongoose.connect(`mongodb://${this.username}:${this.password}@${this.host}:${this.port}/${this.database}?authSource=admin`,
-      { useNewUrlParser: true, useUnifiedTopology: true });
+    try{
+      return await mongoose.connect(`mongodb://${this.username}:${this.password}@${this.host}:${this.port}/${this.database}?authSource=admin`,
+        { useNewUrlParser: true, useUnifiedTopology: true });
+    }catch (e) {
+      return e
+    }
   }
 
 }
