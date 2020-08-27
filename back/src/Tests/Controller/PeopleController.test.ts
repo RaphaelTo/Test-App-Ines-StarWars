@@ -133,12 +133,13 @@ describe('Controller PeopleController', () => {
             starships: ["a","a"],
             vehicles: ["a","a"],
         };
+        const paramID: string = "zae";
         const returnMock: any = {};
 
         expect.assertions(1);
 
         mockedPeople.findByIdAndUpdate.mockResolvedValue(returnMock);
-        const peopleController: PeopleController = await PeopleController.updatePeople(mockValueToUpdatePeople);
+        const peopleController: PeopleController = await PeopleController.updatePeople(paramID,mockValueToUpdatePeople);
 
         expect(peopleController).not.toBeNull();
     })

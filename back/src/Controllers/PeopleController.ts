@@ -16,7 +16,7 @@ class PeopleController {
         }
     }
 
-    public static async updatePeople(people: peopleType) {
+    public static async updatePeople(ID: string, people: peopleType) {
         return {}
     }
 }
