@@ -3,6 +3,8 @@ import { mocked } from "ts-jest/dist/util/testing";
 import People from "../../Models/People";
 import PeopleController from '../../Controllers/PeopleController';
 import { peopleType } from "../../Types/peopleType";
+import { LimiteQueryType } from "../../Types/LimiteQueryType";
+import { FilterQueryType } from "../../Types/FilterQueryType";
 
 jest.mock('../../Models/People');
 
@@ -252,6 +254,20 @@ describe('Controller PeopleController', () => {
 
         expect(mockedPeople.findByIdAndRemove).toHaveBeenCalled();
         expect(messageError.message).toBe('Error id');
-    })
+    });
 
+    test('method getAllPeople exist', async () => {
+        const limitPeople: LimiteQueryType = {
+            skip: 0,
+            limit: 10
+        };
+        const filterPeople: FilterQueryType = {
+            name: 'Raphael'
+        };
+
+        expect.assertions(1);
+        const peopleController: PeopleController = await PeopleController.getAllPeople(filterPeople, limitPeople);
+
+        expect(peopleController).not.toBeNull();
+    })
 });
