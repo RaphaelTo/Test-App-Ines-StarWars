@@ -18,9 +18,13 @@ class PeopleController {
         return successResponse(getPeople);
     }
 
-    public static async getPeopleByID(ID: string) {
-        const getPeople = await People.findById(ID);
-        return successResponse(getPeople);
+    public static async getPeopleByID(ID: string): Promise<ResponseSuccessType<any> | ResponseErrorType<any>> {
+        try{
+            const getPeople = await People.findById(ID);
+            return successResponse(getPeople);
+        }catch (e) {
+            return errorResponse(e)
+        }
     }
 
     public static async createPeople(people: peopleType): Promise<ResponseSuccessType<any> | ResponseErrorType<any>> {
