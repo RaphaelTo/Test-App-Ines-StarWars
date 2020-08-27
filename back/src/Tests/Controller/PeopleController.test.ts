@@ -266,6 +266,16 @@ describe('Controller PeopleController', () => {
         };
 
         expect.assertions(1);
+        // @ts-ignore
+        mockedPeople.find.mockImplementationOnce(() => {
+            return {
+                limit: jest.fn().mockImplementation(() => {
+                    return {
+                        skip: jest.fn().mockResolvedValue({})
+                    }
+                }),
+            };
+        });
         const peopleController: PeopleController = await PeopleController.getAllPeople(filterPeople, limitPeople);
 
         expect(peopleController).not.toBeNull();
@@ -291,11 +301,68 @@ describe('Controller PeopleController', () => {
         ]
 
         expect.assertions(2);
-        mockedPeople.find.mockResolvedValue(mockValueReturn);
+        // @ts-ignore
+        mockedPeople.find.mockImplementationOnce(() => {
+            return {
+                limit: jest.fn().mockImplementation(() => {
+                    return {
+                        skip: jest.fn().mockResolvedValue(mockValueReturn)
+                    }
+                }),
+            };
+        })
         const peopleController: PeopleController = await PeopleController.getAllPeople(filterPeople);
         // @ts-ignore
         const { result } = peopleController;
         expect(result).toEqual(mockValueReturn);
+        expect(mockedPeople.find).toHaveBeenCalled();
+    });
+
+    test('method getAllPeople with limit', async () => {
+        const limitPeople: LimiteQueryType = {
+            skip: 0,
+            limit: 5
+        };
+        const filterPeople: FilterQueryType = {};
+        const mockValueReturn : Array<any> = [
+            {
+                _id: 'a',
+                name: 'Raphael'
+            },
+            {
+                _id: 'b',
+                name: 'Raphael'
+            },
+            {
+                _id: 'b',
+                name: 'Raphael'
+            },
+            {
+                _id: 'b',
+                name: 'Raphael'
+            },
+            {
+                _id: 'b',
+                name: 'Raphael'
+            },
+        ]
+
+        expect.assertions(2);
+        // @ts-ignore
+        mockedPeople.find.mockImplementationOnce(() => {
+            return {
+                limit: jest.fn().mockImplementation(() => {
+                    return {
+                        skip: jest.fn().mockResolvedValue(mockValueReturn)
+                    }
+                }),
+            };
+        })
+
+        const peopleController: PeopleController = await PeopleController.getAllPeople(filterPeople, limitPeople);
+        // @ts-ignore
+        const { result } = peopleController;
+        expect(result.length).toBe(5);
         expect(mockedPeople.find).toHaveBeenCalled();
     })
 });
