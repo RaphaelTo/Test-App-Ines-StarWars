@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import {IPeople} from "../Interfaces/IPeople";
+import { IPeople } from "../Interfaces/IPeople";
 
 const PeopleSchema = new mongoose.Schema({
     name: String,
