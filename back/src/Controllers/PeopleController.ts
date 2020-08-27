@@ -24,6 +24,10 @@ class PeopleController {
             return errorResponse(e);
         }
     }
+
+    public static async deletePeople(ID: string) {
+        return {};
+    }
 }
 
 export default PeopleController;
