@@ -25,9 +25,13 @@ class PeopleController {
         }
     }
 
-    public static async deletePeople(ID: string) {
-        const removePeople = await People.findByIdAndRemove(ID);
-        return successResponse(removePeople);
+    public static async deletePeople(ID: string): Promise<ResponseSuccessType<any> | ResponseErrorType<any>> {
+        try{
+            const removePeople = await People.findByIdAndRemove(ID);
+            return successResponse(removePeople);
+        }catch (e) {
+            return errorResponse(e);
+        }
     }
 }
 
