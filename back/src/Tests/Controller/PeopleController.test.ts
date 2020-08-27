@@ -219,9 +219,24 @@ describe('Controller PeopleController', () => {
         expect.assertions(1);
         // @ts-ignore
         mockedPeople.findByIdAndRemove.mockResolvedValue(returnMock);
-        const peopleController: PeopleController = await PeopleController.deletePeople(ID);
+        const peopleController: PeopleController | null = await PeopleController.deletePeople(ID);
 
         expect(peopleController).not.toBeNull();
+    });
+
+    test('method deletePeople has deleted someone', async () => {
+        const ID: string = 'A';
+        const returnMock: {_id: string, name: string} = {_id: 'A', name: 'Raphael'};
+
+        expect.assertions(2);
+        // @ts-ignore
+        mockedPeople.findByIdAndRemove.mockResolvedValue(returnMock);
+        const peopleController: PeopleController | null = await PeopleController.deletePeople(ID);
+        // @ts-ignore
+        const {result} = peopleController;
+
+        expect(mockedPeople.findByIdAndRemove).toHaveBeenCalled();
+        expect(result).toEqual(returnMock);
     })
 
 });
