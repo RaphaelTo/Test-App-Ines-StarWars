@@ -19,7 +19,8 @@ class PeopleController {
     }
 
     public static async getPeopleByID(ID: string) {
-        return {};
+        const getPeople = await People.findById(ID);
+        return successResponse(getPeople);
     }
 
     public static async createPeople(people: peopleType): Promise<ResponseSuccessType<any> | ResponseErrorType<any>> {
