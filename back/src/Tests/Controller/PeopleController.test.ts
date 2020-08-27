@@ -112,7 +112,7 @@ describe('Controller PeopleController', () => {
         const getErrorMessage = peopleController.messageError;
 
         expect(getErrorMessage.message).toBe("ERROR")
-    })
+    });
 
     test('method updatePeople exist', async () => {
         const mockValueToUpdatePeople: peopleType = {
@@ -142,9 +142,9 @@ describe('Controller PeopleController', () => {
         const peopleController: PeopleController = await PeopleController.updatePeople(paramID,mockValueToUpdatePeople);
 
         expect(peopleController).not.toBeNull();
-    })
+    });
 
-    test('methode updatePeople update a people', async () => {
+    test('method updatePeople update a people', async () => {
         const mockValueToUpdatePeople: peopleType = {
             birth_year: "",
             created: "",
@@ -177,5 +177,39 @@ describe('Controller PeopleController', () => {
         expect(mockedPeople.findByIdAndUpdate).toHaveBeenCalled();
         expect(typeof peopleController).toBe('object');
         expect(resultUpdate).toEqual(returnMock);
-    } )
+    } );
+
+    test('method updatePeople throw an error if reject', async () => {
+        const mockValueToUpdatePeople: peopleType = {
+            birth_year: "",
+            created: "",
+            edited: "",
+            eye_color: "",
+            gender: "",
+            hair_color: "",
+            height: "",
+            homeworld: "",
+            mass: "",
+            name: "Raphael",
+            skin_color: "",
+            url: "",
+            films:  ["a","a"],
+            species: ["a","a"],
+            starships: ["a","a"],
+            vehicles: ["a","a"],
+        };
+        const paramID: string = "zae";
+        const returnMock: Error = new Error('Error');
+
+        expect.assertions(2);
+        // @ts-ignore
+        mockedPeople.findByIdAndUpdate.mockRejectedValue(returnMock);
+        const peopleController: PeopleController = await PeopleController.updatePeople(paramID, mockValueToUpdatePeople);
+        //@ts-ignore
+        const errorUpdate = peopleController.messageError;
+
+        expect(mockedPeople.findByIdAndUpdate).toHaveBeenCalled();
+        expect(errorUpdate.message).toBe('Error');
+    })
+
 });
