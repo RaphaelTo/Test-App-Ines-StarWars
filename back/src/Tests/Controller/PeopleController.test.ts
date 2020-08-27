@@ -269,5 +269,33 @@ describe('Controller PeopleController', () => {
         const peopleController: PeopleController = await PeopleController.getAllPeople(filterPeople, limitPeople);
 
         expect(peopleController).not.toBeNull();
+    });
+
+    test('method getAllPeople with filter', async () => {
+        const limitPeople: LimiteQueryType = {
+            skip: 0,
+            limit: 10
+        };
+        const filterPeople: FilterQueryType = {
+            name: /Raphael/
+        };
+        const mockValueReturn : Array<any> = [
+            {
+                _id: 'a',
+                name: 'Raphael'
+            },
+            {
+                _id: 'b',
+                name: 'Raphael'
+            }
+        ]
+
+        expect.assertions(2);
+        mockedPeople.find.mockResolvedValue(mockValueReturn);
+        const peopleController: PeopleController = await PeopleController.getAllPeople(filterPeople);
+        // @ts-ignore
+        const { result } = peopleController;
+        expect(result).toEqual(mockValueReturn);
+        expect(mockedPeople.find).toHaveBeenCalled();
     })
 });
