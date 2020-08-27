@@ -9,8 +9,12 @@ import { LimiteQueryType } from "../Types/LimiteQueryType";
 
 class PeopleController {
 
-    public static async getAllPeople(filter: FilterQueryType, limit?: LimiteQueryType) {
-        const getPeople = await People.find(filter);
+    public static async getAllPeople(filter: FilterQueryType, limit?: LimiteQueryType): Promise<ResponseSuccessType<any> | ResponseErrorType<any>> {
+        //@ts-ignore
+        const getPeople = await People.find(filter).limit(limit?.limit).skip(limit?.skip);
+
+        if(!getPeople.length) return errorResponse('No more people');
+
         return successResponse(getPeople);
     }
 
