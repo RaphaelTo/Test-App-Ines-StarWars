@@ -2,10 +2,17 @@ import { peopleType } from "../Types/peopleType";
 import People from "../Models/People";
 import { IPeople } from "../Interfaces/IPeople";
 import {errorResponse, successResponse} from "../responseJson";
-import {ResponseSuccessType} from "../Types/ResponseSuccessType";
-import {ResponseErrorType} from "../Types/ResponseErrorType";
+import { ResponseSuccessType } from "../Types/ResponseSuccessType";
+import { ResponseErrorType } from "../Types/ResponseErrorType";
+import { FilterQueryType } from "../Types/FilterQueryType";
+import { LimiteQueryType } from "../Types/LimiteQueryType";
 
 class PeopleController {
+
+    public static async getAllPeople(filter: FilterQueryType, limit?: LimiteQueryType) {
+        const getPeople = await People.find(filter);
+        return successResponse(getPeople);
+    }
 
     public static async createPeople(people: peopleType): Promise<ResponseSuccessType<any> | ResponseErrorType<any>> {
         try {
