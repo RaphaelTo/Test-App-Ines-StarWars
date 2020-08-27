@@ -143,4 +143,39 @@ describe('Controller PeopleController', () => {
 
         expect(peopleController).not.toBeNull();
     })
+
+    test('methode updatePeople update a people', async () => {
+        const mockValueToUpdatePeople: peopleType = {
+            birth_year: "",
+            created: "",
+            edited: "",
+            eye_color: "",
+            gender: "",
+            hair_color: "",
+            height: "",
+            homeworld: "",
+            mass: "",
+            name: "Raphael",
+            skin_color: "",
+            url: "",
+            films:  ["a","a"],
+            species: ["a","a"],
+            starships: ["a","a"],
+            vehicles: ["a","a"],
+        };
+        const paramID: string = "zae";
+        const returnMock: {_id: string, name: string } = {_id: 'zae', name: 'Raphael'};
+
+        expect.assertions(3);
+        // @ts-ignore
+        mockedPeople.findByIdAndUpdate.mockResolvedValue(returnMock);
+        const peopleController: PeopleController = await PeopleController.updatePeople(paramID, mockValueToUpdatePeople);
+        //@ts-ignore
+        const resultUpdate = peopleController.result;
+
+
+        expect(mockedPeople.findByIdAndUpdate).toHaveBeenCalled();
+        expect(typeof peopleController).toBe('object');
+        expect(resultUpdate).toEqual(returnMock);
+    } )
 });
