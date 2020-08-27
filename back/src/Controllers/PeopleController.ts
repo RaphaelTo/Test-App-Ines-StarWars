@@ -18,6 +18,10 @@ class PeopleController {
         return successResponse(getPeople);
     }
 
+    public static async getPeopleByID(ID: string) {
+        return {};
+    }
+
     public static async createPeople(people: peopleType): Promise<ResponseSuccessType<any> | ResponseErrorType<any>> {
         try {
             const createPeople: IPeople = await People.create(people);
