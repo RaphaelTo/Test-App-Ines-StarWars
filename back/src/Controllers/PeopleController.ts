@@ -26,7 +26,8 @@ class PeopleController {
     }
 
     public static async deletePeople(ID: string) {
-        return {};
+        const removePeople = await People.findByIdAndRemove(ID);
+        return successResponse(removePeople);
     }
 }
 
