@@ -15,6 +15,10 @@ class PeopleController {
             return errorResponse(e);
         }
     }
+
+    public static async updatePeople(people: peopleType) {
+        return {}
+    }
 }
 
 export default PeopleController;
