@@ -210,6 +210,18 @@ describe('Controller PeopleController', () => {
 
         expect(mockedPeople.findByIdAndUpdate).toHaveBeenCalled();
         expect(errorUpdate.message).toBe('Error');
+    });
+
+    test('method deletePeople exist', async () => {
+        const ID: string = 'A';
+        const returnMock: {} = {};
+
+        expect.assertions(1);
+        // @ts-ignore
+        mockedPeople.findByIdAndRemove.mockResolvedValue(returnMock);
+        const peopleController: PeopleController = await PeopleController.deletePeople(ID);
+
+        expect(peopleController).not.toBeNull();
     })
 
 });
