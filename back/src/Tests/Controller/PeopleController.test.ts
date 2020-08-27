@@ -1,7 +1,9 @@
-import PeopleController from '../../Controllers/PeopleController';
-import mongoose, {mongo} from 'mongoose';
+import mongoose from 'mongoose';
 import {mocked} from "ts-jest/utils";
-import { peopleType} from "../../Types/peopleType";
+
+import PeopleController from '../../Controllers/PeopleController';
+import { peopleType } from "../../Types/peopleType";
+
 
 jest.mock('mongoose');
 const mockedMongoose = mocked(mongoose, true);
