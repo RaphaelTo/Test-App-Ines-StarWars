@@ -17,7 +17,8 @@ class PeopleController {
     }
 
     public static async updatePeople(ID: string, people: peopleType) {
-        return {}
+        const updatePeople = await People.findByIdAndUpdate(ID, people);
+        return successResponse(updatePeople);
     }
 }
 
