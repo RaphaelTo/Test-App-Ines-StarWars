@@ -391,5 +391,14 @@ describe('Controller PeopleController', () => {
         const { messageError } = peopleController;
         expect(messageError).toBe('No more people');
         expect(mockedPeople.find).toHaveBeenCalled();
+    });
+
+    test('method getPeopleById exist', async () => {
+        const ID: string = 'A';
+
+        expect.assertions(1);
+        const peopleController: PeopleController = await PeopleController.getPeopleByID(ID);
+
+        expect(peopleController).not.toBeNull();
     })
 });
