@@ -16,9 +16,13 @@ class PeopleController {
         }
     }
 
-    public static async updatePeople(ID: string, people: peopleType) {
-        const updatePeople = await People.findByIdAndUpdate(ID, people);
-        return successResponse(updatePeople);
+    public static async updatePeople(ID: string, people: peopleType): Promise<ResponseSuccessType<any> | ResponseErrorType<any>> {
+        try{
+            const updatePeople = await People.findByIdAndUpdate(ID, people);
+            return successResponse(updatePeople);
+        }catch (e) {
+            return errorResponse(e);
+        }
     }
 }
 
