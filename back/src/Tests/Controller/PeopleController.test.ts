@@ -237,6 +237,21 @@ describe('Controller PeopleController', () => {
 
         expect(mockedPeople.findByIdAndRemove).toHaveBeenCalled();
         expect(result).toEqual(returnMock);
+    });
+
+    test('method deletePeople throw error if id unknown', async () => {
+        const ID: string = 'error';
+        const returnMock: Error = new Error('Error id');
+
+        expect.assertions(2);
+        // @ts-ignore
+        mockedPeople.findByIdAndRemove.mockRejectedValue(returnMock);
+        const peopleController: PeopleController | null = await PeopleController.deletePeople(ID);
+        // @ts-ignore
+        const {messageError} = peopleController;
+
+        expect(mockedPeople.findByIdAndRemove).toHaveBeenCalled();
+        expect(messageError.message).toBe('Error id');
     })
 
 });
