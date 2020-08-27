@@ -364,5 +364,32 @@ describe('Controller PeopleController', () => {
         const { result } = peopleController;
         expect(result.length).toBe(5);
         expect(mockedPeople.find).toHaveBeenCalled();
+    });
+
+    test('method getAllPeople return no more people if length === 0', async () => {
+        const limitPeople: LimiteQueryType = {
+            skip: 0,
+            limit: 5
+        };
+        const filterPeople: FilterQueryType = {};
+        const mockValueReturn : Array<any> = [];
+
+        expect.assertions(2);
+        // @ts-ignore
+        mockedPeople.find.mockImplementationOnce(() => {
+            return {
+                limit: jest.fn().mockImplementation(() => {
+                    return {
+                        skip: jest.fn().mockResolvedValue(mockValueReturn)
+                    }
+                }),
+            };
+        })
+
+        const peopleController: PeopleController = await PeopleController.getAllPeople(filterPeople, limitPeople);
+        // @ts-ignore
+        const { messageError } = peopleController;
+        expect(messageError).toBe('No more people');
+        expect(mockedPeople.find).toHaveBeenCalled();
     })
 });
