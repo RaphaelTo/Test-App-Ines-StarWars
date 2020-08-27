@@ -421,4 +421,17 @@ describe('Controller PeopleController', () => {
         expect(mockedPeople.findById).toHaveBeenCalled();
         expect(result).toEqual(mockResultReturn);
     });
+
+    test('method getPeopleByID throw error ID not found', async () => {
+        const ID: string = 'A';
+        const mockResultReturn: Error = new Error('Error ID');
+
+        //@ts-ignore
+        mockedPeople.findById.mockRejectedValue(mockResultReturn);
+        const peopleController: PeopleController = await PeopleController.getPeopleByID(ID);
+        //@ts-ignore
+        const { messageError } = peopleController;
+
+        expect(messageError.message).toBe('Error ID');
+    })
 });
