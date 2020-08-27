@@ -397,8 +397,28 @@ describe('Controller PeopleController', () => {
         const ID: string = 'A';
 
         expect.assertions(1);
+        //@ts-ignore
+        mockedPeople.findById.mockResolvedValue({});
         const peopleController: PeopleController = await PeopleController.getPeopleByID(ID);
 
         expect(peopleController).not.toBeNull();
-    })
+    });
+
+    test('method getPeopleById return an people', async () => {
+        const ID: string = 'A';
+        const mockResultReturn: {_id: string, name: string} = {
+            _id: 'A',
+            name: 'Raphael'
+        };
+
+        expect.assertions(2);
+        //@ts-ignore
+        mockedPeople.findById.mockResolvedValue(mockResultReturn);
+        const peopleController: PeopleController = await PeopleController.getPeopleByID(ID);
+        //@ts-ignore
+        const { result } = peopleController;
+
+        expect(mockedPeople.findById).toHaveBeenCalled();
+        expect(result).toEqual(mockResultReturn);
+    });
 });
