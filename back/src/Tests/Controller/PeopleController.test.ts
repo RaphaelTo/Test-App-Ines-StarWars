@@ -82,7 +82,6 @@ describe('Controller PeopleController', () => {
         expect(typeof peopleController).toBe('object');
     });
 
-
     test('method createPeople throw an Error if promise is rejected', async () => {
         const mockValueToCreatePeople: peopleType = {
             birth_year: "2018",
@@ -113,5 +112,34 @@ describe('Controller PeopleController', () => {
         const getErrorMessage = peopleController.messageError;
 
         expect(getErrorMessage.message).toBe("ERROR")
+    })
+
+    test('method updatePeople exist', async () => {
+        const mockValueToUpdatePeople: peopleType = {
+            birth_year: "",
+            created: "",
+            edited: "",
+            eye_color: "",
+            gender: "",
+            hair_color: "",
+            height: "",
+            homeworld: "",
+            mass: "",
+            name: "",
+            skin_color: "",
+            url: "",
+            films:  ["a","a"],
+            species: ["a","a"],
+            starships: ["a","a"],
+            vehicles: ["a","a"],
+        };
+        const returnMock: any = {};
+
+        expect.assertions(1);
+
+        mockedPeople.findByIdAndUpdate.mockResolvedValue(returnMock);
+        const peopleController: PeopleController = await PeopleController.updatePeople(mockValueToUpdatePeople);
+
+        expect(peopleController).not.toBeNull();
     })
 });
