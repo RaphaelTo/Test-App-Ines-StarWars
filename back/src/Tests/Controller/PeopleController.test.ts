@@ -81,4 +81,37 @@ describe('Controller PeopleController', () => {
         expect(peopleController).toEqual(peopleController);
         expect(typeof peopleController).toBe('object');
     });
+
+
+    test('method createPeople throw an Error if promise is rejected', async () => {
+        const mockValueToCreatePeople: peopleType = {
+            birth_year: "2018",
+            created: "today",
+            edited: "yesterday",
+            eye_color: "blue",
+            gender: "male",
+            hair_color: "short",
+            height: "58kg",
+            homeworld: "earth",
+            mass: "idk",
+            name: "Raphael",
+            skin_color: "blue",
+            url: "portfolio-raphael-torres.fr",
+            films:  ["a","a"],
+            species: ["a","a"],
+            starships: ["a","a"],
+            vehicles: ["a","a"],
+        };
+        const returnMock: Error = new Error('ERROR');
+
+        expect.assertions(1);
+        // @ts-ignore
+        mockedPeople.create.mockRejectedValue(returnMock);
+        const peopleController: PeopleController = await PeopleController.createPeople(mockValueToCreatePeople);
+
+        //@ts-ignore
+        const getErrorMessage = peopleController.messageError;
+
+        expect(getErrorMessage.message).toBe("ERROR")
+    })
 });
