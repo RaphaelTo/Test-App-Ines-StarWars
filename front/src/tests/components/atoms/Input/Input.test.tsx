@@ -14,5 +14,12 @@ describe('component input', () => {
         const getElement = getByTestId('input-test');
 
         expect(getElement instanceof HTMLInputElement).toBeTruthy();
+    });
+
+    test('atom input return type="text by default', () => {
+        const { getByTestId } = render(<Input />);
+        const getElement = getByTestId('input-test');
+
+        expect(getElement.type).toBe('text');
     })
 })
