@@ -8,4 +8,13 @@ describe('component input', () => {
         const inputComponent = render(<Label />);
         expect(inputComponent).toBeTruthy();
     });
+
+    test('atom label is label tag', () => {
+        const { getByTestId } = render(<Label />);
+
+        const getElement = getByTestId('label-id');
+
+        expect(getElement instanceof HTMLLabelElement).toBeTruthy();
+    })
+
 })
