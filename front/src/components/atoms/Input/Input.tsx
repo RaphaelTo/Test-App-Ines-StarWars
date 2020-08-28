@@ -2,16 +2,18 @@ import React from "react";
 import PropTypes from 'prop-types';
 
 interface IPropsInput {
-    type?: string
+    type?: string,
+    id?: string
 }
 
-const Input: React.FunctionComponent<IPropsInput> = ({type}) => (
-    <input type={type} data-testid='input-test'/>
+const Input: React.FunctionComponent<IPropsInput> = ({type, id}) => (
+    <input type={type} id={id} data-testid='input-test'/>
 );
 
 
 Input.propTypes = {
-    type: PropTypes.string
+    type: PropTypes.string,
+    id: PropTypes.string
 };
 
 Input.defaultProps = {
