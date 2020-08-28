@@ -42,5 +42,12 @@ describe('component input', () => {
         const getElement = getByTestId('input-test');
 
         expect(getElement.id).toBe('');
+    });
+
+    test('atom input can have more props ...props', () => {
+        const { getByTestId } = render(<Input type="password" placeholder="Veuillez écrire le nom du personnage" /> );
+        const getElement = getByTestId('input-test');
+
+        expect(getElement.placeholder).toBe('Veuillez écrire le nom du personnage');
     })
 })
