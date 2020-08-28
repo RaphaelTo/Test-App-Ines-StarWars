@@ -15,6 +15,14 @@ describe('component input', () => {
         const getElement = getByTestId('label-id');
 
         expect(getElement instanceof HTMLLabelElement).toBeTruthy();
-    })
+    });
 
+    test('atom label can have for and content to display', () => {
+        const { getByTestId } = render(<Label htmlFor="id-input" content="Nom :"/>);
+
+        const getElement = getByTestId('label-id');
+
+        expect(getElement.htmlFor).toBe('id-input');
+        expect(getElement).toHaveTextContent('Nom :')
+    })
 })
