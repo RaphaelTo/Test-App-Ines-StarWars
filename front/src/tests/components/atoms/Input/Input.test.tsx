@@ -36,4 +36,11 @@ describe('component input', () => {
 
         expect(getElement.id).toBe('label-id');
     });
+
+    test('atom input id doesnt default value', () => {
+        const { getByTestId } = render(<Input type="password"/> );
+        const getElement = getByTestId('input-test');
+
+        expect(getElement.id).toBe('');
+    })
 })
