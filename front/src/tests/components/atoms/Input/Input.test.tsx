@@ -2,6 +2,7 @@ import '@testing-library/jest-dom/extend-expect';
 import React from 'react';
 import { render } from '@testing-library/react';
 import Input from '../../../../components/atoms/Input/Input';
+import Label from "../../../../components/atoms/Label/Label";
 
 describe('component input', () => {
     test('renders atom input', () => {
@@ -50,4 +51,4 @@ describe('component input', () => {
 
         expect(getElement.placeholder).toBe('Veuillez écrire le nom du personnage');
     })
-})
+});
