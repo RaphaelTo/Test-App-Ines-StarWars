@@ -19,4 +19,12 @@ describe('atom List', () => {
 
        expect(getAllItems).toEqual(items);
    });
+
+   test('atom List have default value for props value', () => {
+       const { getAllByTestId } = render(<List />);
+
+       const getAllItems = getAllByTestId('li-items').map(item => item.textContent);
+
+       expect(getAllItems).toEqual(['Value 1', 'Value 2', 'Value 3']);
+   });
 });
