@@ -9,5 +9,14 @@ describe('atom List', () => {
        const getList = render(<List />);
 
        expect(getList).toBeTruthy();
-   })
+   });
+
+   test('atom List get an props items type Array and return in li', () => {
+       const items: Array<string> = ['Name', 'Email', 'Password'];
+       const { getAllByTestId } = render(<List items={items}/>);
+
+       const getAllItems = getAllByTestId('li-items').map(item => item.textContent);
+
+       expect(getAllItems).toEqual(items);
+   });
 });
