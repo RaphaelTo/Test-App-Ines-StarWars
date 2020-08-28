@@ -4,6 +4,8 @@ interface IPropsInput {
     type?: string
 }
 
-const Input: React.FunctionComponent<IPropsInput> = ({type}) => ( <h1>Hello</h1>);
+const Input: React.FunctionComponent<IPropsInput> = ({type}) => (
+    <input type='text' data-testid='input-test'/>
+);
 
 export default Input;
