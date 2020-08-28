@@ -24,5 +24,14 @@ describe('component input', () => {
 
         expect(getElement.htmlFor).toBe('id-input');
         expect(getElement).toHaveTextContent('Nom :')
+    });
+
+    test('atom label have default value', () => {
+        const { getByTestId } = render(<Label />);
+
+        const getElement = getByTestId('label-id');
+
+        expect(getElement.htmlFor).toBe('valeur par defaut');
+        expect(getElement).toHaveTextContent('valeur par defaut');
     })
 })
