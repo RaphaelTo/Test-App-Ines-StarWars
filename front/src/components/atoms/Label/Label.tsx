@@ -1,7 +1,12 @@
 import React from "react";
 
-const Label: React.FunctionComponent = () => {
-    return <label htmlFor="" data-testid="label-id"></label>
+interface IPropsLabel {
+    htmlFor: string,
+    content: string
+}
+
+const Label: React.FunctionComponent<IPropsLabel> = ({htmlFor, content}) => {
+    return <label htmlFor={htmlFor} data-testid="label-id">{content}</label>
 };
 
 export default Label;
