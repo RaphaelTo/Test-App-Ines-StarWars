@@ -25,4 +25,13 @@ describe('molecules search', () => {
        expect(getLabel.htmlFor).toBe('idL');
        expect(getLabel.textContent).toBe('Nom');
     });
+
+    test('molecules search return atom Input', () => {
+        const { getByTestId } =render(<Search />);
+        const getInput = getByTestId('input-test');
+
+        expect(getInput.type).toBe('text');
+        expect(getInput.id).toBe('');
+        expect(getInput instanceof HTMLInputElement);
+    });
 })
