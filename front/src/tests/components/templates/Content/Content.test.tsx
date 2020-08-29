@@ -20,4 +20,12 @@ describe('template Content', () => {
        expect(getAllByTestId('people-test')[0] instanceof HTMLParagraphElement).toBeTruthy();
        expect(getPeoples).toEqual(['Raphael', '78kg', '100']);
    });
+
+   test('template Content dont need to give props "peoples"', () => {
+       const { getAllByTestId } = render(<Content />);
+
+       const getPeoples = getAllByTestId('people-test').map(people => people.textContent);
+
+       expect(getPeoples).toEqual(['Default name', 'Default height', 'Default mass']);
+   });
 });
