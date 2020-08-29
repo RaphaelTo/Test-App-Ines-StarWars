@@ -9,5 +9,18 @@ describe('organisms Navigation', () => {
        const getNavigation = render(<Navigation />);
 
        expect(getNavigation).not.toBeNull();
+   });
+
+   test('organism Navigation return  molecule Search', () => {
+       const { getByTestId } = render(<Navigation/>);
+       const getSearchInput = getByTestId('input-test');
+       const getSearchLabel = getByTestId('label-id');
+
+       expect(getSearchInput.type).toBe('text');
+       expect(getSearchInput.id).toBe('');
+       expect(getSearchInput instanceof HTMLInputElement).toBeTruthy();
+       expect(getSearchLabel.htmlFor).toBe('valeur par defaut');
+       expect(getSearchLabel.textContent).toBe('valeur par defaut');
+       expect(getSearchLabel instanceof HTMLLabelElement).toBeTruthy();
    })
 });
