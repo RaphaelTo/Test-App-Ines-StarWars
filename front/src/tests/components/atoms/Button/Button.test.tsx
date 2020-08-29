@@ -18,5 +18,13 @@ describe('atom Button', () => {
 
         expect(getButton instanceof HTMLButtonElement).toBeTruthy();
         expect(getButton).toHaveTextContent('Load more ...');
+    });
+
+    test('atom Button have default value for button', () => {
+        const { getByTestId } = render(<Button/>);
+
+        const getButton = getByTestId('button-test');
+
+        expect(getButton).toHaveTextContent('Valider')
     })
 });
