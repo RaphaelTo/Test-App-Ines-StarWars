@@ -9,12 +9,13 @@ interface IPropsNavigation {
     searchLabelFor?: string
     searchLabelContent?: string
     listItems?: Array<string>
+    [index: string]: any
 }
 
-const Navigation: React.FunctionComponent<IPropsNavigation> = ({searchInputId, searchInputType, searchLabelContent, searchLabelFor, listItems}) => {
+const Navigation: React.FunctionComponent<IPropsNavigation> = ({searchInputId, searchInputType, searchLabelContent, searchLabelFor, listItems, ...props}) => {
     return (
         <>
-            <Search idInput={searchInputId} typeInput={searchInputType} idLabel={searchLabelFor} contentLabel={searchLabelContent}/>
+            <Search {...props} idInput={searchInputId} typeInput={searchInputType} idLabel={searchLabelFor} contentLabel={searchLabelContent}/>
             <List items={listItems}/>
         </>
     )
