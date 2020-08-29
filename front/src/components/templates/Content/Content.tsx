@@ -1,4 +1,6 @@
 import React from 'react';
+import './Content.css';
+
 import People from "../../atoms/People/People";
 import Button from "../../atoms/Button/Button";
 
@@ -19,7 +21,9 @@ const Content: React.FunctionComponent<IPropsContent> = ({
     return (
         <>
             <People peoples={peoples} />
-            <Button onClickButton={onClickButton} name={nameButton} />
+            <div className="content-button">
+                <Button onClickButton={onClickButton} name={nameButton} />
+            </div>
         </>
     )
 };
