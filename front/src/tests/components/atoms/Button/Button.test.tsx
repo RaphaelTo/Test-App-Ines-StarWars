@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom/extend-expect';
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 
 import Button from '../../../../components/atoms/Button/Button';
 
@@ -26,5 +26,15 @@ describe('atom Button', () => {
         const getButton = getByTestId('button-test');
 
         expect(getButton).toHaveTextContent('Valider')
-    })
+    });
+
+    test('atom Button can give an function and click', () => {
+        const { getByTestId } = render(<Button onClickButton={() => getByTestId('button-test').textContent = 'lol'}/>);
+
+        const getButton = getByTestId('button-test');
+        fireEvent.click(getButton);
+
+        expect(fireEvent.click(getButton)).toBeTruthy();
+        expect(getButton).toHaveTextContent('lol');
+    });
 });
