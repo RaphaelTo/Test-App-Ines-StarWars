@@ -55,4 +55,14 @@ describe('template Content', () => {
         expect(getButton).toHaveTextContent('clicked');
         expect(fireEvent.click(getButton)).toBeTruthy();
     });
+
+    test('template Content return atoms Button and People', () => {
+        const { getByTestId, getAllByTestId } = render(<Content />);
+
+        const getButton = getByTestId('button-test');
+        const getPeople = getAllByTestId('people-test');
+
+        expect(getButton instanceof HTMLButtonElement).toBeTruthy();
+        expect(getPeople[0] instanceof HTMLParagraphElement).toBeTruthy();
+    })
 });
