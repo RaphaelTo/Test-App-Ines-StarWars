@@ -37,4 +37,12 @@ describe('template Content', () => {
        expect(getButton instanceof HTMLButtonElement).toBeTruthy();
        expect(getButton).toHaveTextContent('Raphael le bg');
    });
+
+    test('template Content return atom Button less props', () => {
+        const { getByTestId } = render(<Content />);
+
+        const getButton = getByTestId('button-test');
+
+        expect(getButton).toHaveTextContent('Valider');
+    });
 });
