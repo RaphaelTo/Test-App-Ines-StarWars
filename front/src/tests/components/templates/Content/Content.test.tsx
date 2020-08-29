@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom/extend-expect';
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 
 import Content from '../../../../components/templates/Content/Content';
 
@@ -44,5 +44,15 @@ describe('template Content', () => {
         const getButton = getByTestId('button-test');
 
         expect(getButton).toHaveTextContent('Valider');
+    });
+
+    test('template Content return atom Button and add props onClickButton and try to click', () => {
+        const { getByTestId } = render(<Content onClickButton={() => getByTestId('button-test').textContent = 'clicked'}/>);
+
+        const getButton = getByTestId('button-test');
+        fireEvent.click(getButton);
+
+        expect(getButton).toHaveTextContent('clicked');
+        expect(fireEvent.click(getButton)).toBeTruthy();
     });
 });
