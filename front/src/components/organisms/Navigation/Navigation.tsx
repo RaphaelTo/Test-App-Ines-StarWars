@@ -1,7 +1,8 @@
 import React from "react";
+import Search from "../../molecules/Search/Search";
 
 const Navigation = () => {
-    return <h1>NAvigation</h1>
+    return <Search />
 };
 
 export default Navigation;
