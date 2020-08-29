@@ -10,4 +10,14 @@ describe('template Content', () => {
 
        expect(getContent).toBeTruthy();
    });
+
+   test('template Content have to return People', () => {
+       const peoples: Array<object> = [{name: 'Raphael', height: '78kg', mass: '100'}];
+       const { getAllByTestId } = render(<Content peoples={peoples}/>);
+
+       const getPeoples = getAllByTestId('people-test').map(people => people.textContent);
+
+       expect(getAllByTestId('people-test')[0] instanceof HTMLParagraphElement).toBeTruthy();
+       expect(getPeoples).toEqual(['Raphael', '78kg', '100']);
+   });
 });
