@@ -1,7 +1,12 @@
 import React from 'react';
 
-const Button: React.FunctionComponent = () => {
-    return <h1>button</h1>
+interface IPropsButton {
+    name?: string
+}
+
+
+const Button: React.FunctionComponent<IPropsButton> = ({name = 'Valider'}) => {
+    return <button data-testid="button-test">{name}</button>
 };
 
 export default Button;
