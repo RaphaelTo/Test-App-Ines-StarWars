@@ -46,4 +46,12 @@ describe('organisms Navigation', () => {
        expect(getAllByTestId('li-items')).toBeTruthy();
    });
 
+   test('organism Navigation take props for atom List', () => {
+       const arrayList: Array<string> = ['Nom', 'Prenom', 'Age'];
+       const { getAllByTestId } = render(<Navigation listItems={arrayList}/>);
+       const getList = getAllByTestId('li-items').map(item => item.textContent);
+
+       expect(getList).toEqual(arrayList);
+       expect(getAllByTestId('li-items')).toBeTruthy();
+   });
 });
