@@ -12,11 +12,11 @@ interface IPropsNavigation {
     [index: string]: any
 }
 
-const Navigation: React.FunctionComponent<IPropsNavigation> = ({searchInputId, searchInputType, searchLabelContent, searchLabelFor, listItems, ...props}) => {
+const Navigation: React.FunctionComponent<IPropsNavigation> = ({searchInputId, searchInputType, searchLabelContent, searchLabelFor, propsOnClickList,listItems, ...props}) => {
     return (
         <>
             <Search {...props} idInput={searchInputId} typeInput={searchInputType} idLabel={searchLabelFor} contentLabel={searchLabelContent}/>
-            <List items={listItems}/>
+            <List propsOnClickList={propsOnClickList} items={listItems}/>
         </>
     )
 };

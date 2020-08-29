@@ -7,8 +7,8 @@ interface IPropsInput {
     [index: string]: any
 }
 
-const Input: React.FunctionComponent<IPropsInput> = ({type, id, ...props}) => (
-    <input type={type} id={id} {...props} data-testid='input-test'/>
+const Input: React.FunctionComponent<IPropsInput> = ({type, id, propsOnChangeInput, ...props}) => (
+    <input type={type} id={id} {...props} data-testid='input-test' onChange={propsOnChangeInput}/>
 );
 
 
