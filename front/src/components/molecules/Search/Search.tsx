@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Label from "../../atoms/Label/Label";
+import Input from "../../atoms/Input/Input";
 
 interface IPropsSearch {
     idLabel?: string,
@@ -8,7 +9,12 @@ interface IPropsSearch {
 }
 
 const Search: React.FunctionComponent<IPropsSearch> = ({idLabel, contentLabel}) => {
-    return <Label htmlFor={idLabel} content={contentLabel}/>;
+    return (
+        <>
+            <Label htmlFor={idLabel} content={contentLabel}/>
+            <Input />
+        </>
+    )
 };
 
 Search.propTypes = {
