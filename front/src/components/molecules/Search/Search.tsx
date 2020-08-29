@@ -1,7 +1,8 @@
 import React from "react";
+import Label from "../../atoms/Label/Label";
 
 const Search = () => {
-    return <h1>Hello</h1>
+    return <Label />;
 };
 
 export default Search;
