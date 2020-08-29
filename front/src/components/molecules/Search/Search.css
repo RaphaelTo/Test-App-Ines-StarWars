@@ -1,0 +1,4 @@
+.header-navigation-search {
+    display: flex;
+    flex-flow: column wrap;
+}
