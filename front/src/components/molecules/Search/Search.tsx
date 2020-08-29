@@ -7,14 +7,15 @@ interface IPropsSearch {
     idLabel?: string,
     contentLabel?: string,
     idInput?: string,
-    typeInput?: string
+    typeInput?: string,
+    [index:string]: any
 }
 
-const Search: React.FunctionComponent<IPropsSearch> = ({idLabel, contentLabel, idInput, typeInput}) => {
+const Search: React.FunctionComponent<IPropsSearch> = ({idLabel, contentLabel, idInput, typeInput, ...props}) => {
     return (
         <>
             <Label htmlFor={idLabel} content={contentLabel}/>
-            <Input type={typeInput} id={idInput}/>
+            <Input type={typeInput} id={idInput} {...props}/>
         </>
     )
 };
