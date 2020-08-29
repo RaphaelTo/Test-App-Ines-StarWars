@@ -34,4 +34,12 @@ describe('molecules search', () => {
         expect(getInput.id).toBe('');
         expect(getInput instanceof HTMLInputElement);
     });
+
+    test('molecules search accept props for atom Input', () => {
+       const { getByTestId } = render(<Search typeInput="password" idInput="idI"/>);
+       const getInput = getByTestId('input-test');
+
+       expect(getInput.type).toBe('password');
+       expect(getInput.id).toBe('idI');
+    });
 })
