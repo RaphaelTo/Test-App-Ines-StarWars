@@ -1,7 +1,12 @@
 import React from 'react';
+import People from "../../atoms/People/People";
 
-const Content: React.FunctionComponent = () => {
-    return <h1>Content</h1>
+interface IPropsContent {
+    peoples?: Array<object>
+}
+
+const Content: React.FunctionComponent<IPropsContent> = ({peoples}) => {
+    return <People peoples={peoples} />
 };
 
 export default Content;
