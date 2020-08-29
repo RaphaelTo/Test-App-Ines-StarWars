@@ -47,4 +47,12 @@ describe('atom People', () => {
        expect(getPeople).toEqual(['Leia Organa', '150', '49']);
    });
 
+   test('atom people have default value', () => {
+       const { getAllByTestId } = render(<People />);
+
+       const getPeople = getAllByTestId('people-test').map(element => element.textContent);
+
+       expect(getPeople).toEqual(['Default name', 'Default height', 'Default mass']);
+   });
+
 });
