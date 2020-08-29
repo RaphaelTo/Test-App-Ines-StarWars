@@ -28,4 +28,13 @@ describe('template Content', () => {
 
        expect(getPeoples).toEqual(['Default name', 'Default height', 'Default mass']);
    });
+
+   test('template Content return atom Button', () => {
+       const { getByTestId } = render(<Content nameButton="Raphael le bg"/>);
+
+       const getButton = getByTestId('button-test');
+
+       expect(getButton instanceof HTMLButtonElement).toBeTruthy();
+       expect(getButton).toHaveTextContent('Raphael le bg');
+   });
 });
