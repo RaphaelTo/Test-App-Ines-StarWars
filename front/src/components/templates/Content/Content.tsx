@@ -4,7 +4,8 @@ import Button from "../../atoms/Button/Button";
 
 interface IPropsContent {
     peoples?: Array<object>
-    nameButton ?: string
+    nameButton ?: string,
+    onClickButton ?: any
 }
 
 const Content: React.FunctionComponent<IPropsContent> = ({
@@ -12,11 +13,13 @@ const Content: React.FunctionComponent<IPropsContent> = ({
                                                                  name: 'Default name',
                                                                  height: 'Default height',
                                                                  mass: 'Default mass'
-                                                             }], nameButton= 'Valider' }) => {
+                                                             }],
+                                                             nameButton= 'Valider',
+                                                         onClickButton}) => {
     return (
         <>
             <People peoples={peoples} />
-            <Button name={nameButton} />
+            <Button onClickButton={onClickButton} name={nameButton} />
         </>
     )
 };
