@@ -32,7 +32,7 @@ describe('molecules search', () => {
 
         expect(getInput.type).toBe('text');
         expect(getInput.id).toBe('');
-        expect(getInput instanceof HTMLInputElement);
+        expect(getInput instanceof HTMLInputElement).toBeTruthy();
     });
 
     test('molecules search accept props for atom Input', () => {
@@ -41,5 +41,20 @@ describe('molecules search', () => {
 
        expect(getInput.type).toBe('password');
        expect(getInput.id).toBe('idI');
+    });
+
+    test('molecules search render Label atom and Input atom', () => {
+        const { getByTestId } = render(<Search typeInput="text" idInput="idL" idLabel="idL" contentLabel="Nom" placeholder="Veuillez renseignez votre nom"/>);
+
+        const getInput = getByTestId('input-test');
+        const getLabel = getByTestId('label-id');
+
+        expect(getInput instanceof HTMLInputElement).toBeTruthy();
+        expect(getInput.type).toBe('text');
+        expect(getInput.id).toBe('idL');
+        expect(getInput.placeholder).toBe('Veuillez renseignez votre nom');
+        expect(getLabel instanceof HTMLLabelElement).toBeTruthy();
+        expect(getLabel.htmlFor).toBe('idL');
+        expect(getLabel.textContent).toBe('Nom');
     });
 })
