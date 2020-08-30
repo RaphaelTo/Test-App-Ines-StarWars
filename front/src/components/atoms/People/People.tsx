@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import './People.css';
 
 interface IPropsPeople {
@@ -15,11 +16,13 @@ const People: React.FunctionComponent<IPropsPeople> = ({peoples = [
     return (
         <div className="atom-people">
             {peoples.map((people:any, key: number) => (
-                <div className="atom-people-items" key={key}>
-                    <p data-testid="people-test">{people.name}</p>
-                    <p data-testid="people-test">{people.height}</p>
-                    <p data-testid="people-test">{people.mass}</p>
-                </div>
+                <Link to={`/people/${people._id}`}>
+                    <div className="atom-people-items" key={key}>
+                        <p data-testid="people-test">{people.name}</p>
+                        <p data-testid="people-test">{people.height}</p>
+                        <p data-testid="people-test">{people.mass}</p>
+                    </div>
+                </Link>
             ))}
         </div>
     )
