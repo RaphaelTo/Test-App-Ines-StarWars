@@ -8,7 +8,8 @@ interface IPropsSearch {
     contentLabel?: string,
     idInput?: string,
     typeInput?: string,
-    [index:string]: any
+    [index:string]: any,
+    onChangeInput: any
 }
 
 const Search: React.FunctionComponent<IPropsSearch> = ({
@@ -16,13 +17,14 @@ const Search: React.FunctionComponent<IPropsSearch> = ({
                                                            contentLabel= 'valeur par defaut',
                                                            idInput,
                                                            typeInput = 'text' ,
+                                                           onChangeInput,
                                                            ...props
 }) => {
     return (
         <>
             <div className="header-navigation-search">
                 <Label htmlFor={idLabel} content={contentLabel}/>
-                <Input type={typeInput} id={idInput} {...props}/>
+                <Input onChangeInput={onChangeInput} type={typeInput} id={idInput} {...props}/>
             </div>
         </>
     )

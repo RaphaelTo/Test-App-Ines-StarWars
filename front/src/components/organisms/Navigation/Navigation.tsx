@@ -8,6 +8,7 @@ interface IPropsNavigation {
     searchLabelFor?: string
     searchLabelContent?: string
     listItems?: Array<string>
+    onChangeInput?: any
     [index: string]: any
 }
 
@@ -17,12 +18,13 @@ const Navigation: React.FunctionComponent<IPropsNavigation> = ({
                                                                    searchLabelContent = 'valeur par defaut',
                                                                    searchLabelFor = 'valeur par defaut',
                                                                    propsOnClickList,
+                                                                   onChangeInput,
                                                                    listItems= ['Value 1', 'Value 2', 'Value 3'],
                                                                    ...props
 }) => {
     return (
         <>
-            <Search {...props} idInput={searchInputId} typeInput={searchInputType} idLabel={searchLabelFor} contentLabel={searchLabelContent}/>
+            <Search onChangeInput={onChangeInput} {...props} idInput={searchInputId} typeInput={searchInputType} idLabel={searchLabelFor} contentLabel={searchLabelContent}/>
             <List propsOnClickList={propsOnClickList} items={listItems}/>
         </>
     )
