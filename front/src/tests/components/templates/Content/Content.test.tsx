@@ -64,5 +64,13 @@ describe('template Content', () => {
 
         expect(getButton instanceof HTMLButtonElement).toBeTruthy();
         expect(getPeople[0] instanceof HTMLParagraphElement).toBeTruthy();
-    })
+    });
+
+    test('template Content disabled button', () => {
+        const { getByTestId } = render(<Content activateButton={false}/>);
+
+        const getButton = getByTestId('content-button');
+
+        expect(getButton).toHaveTextContent('Plus rien à charger');
+    });
 });
