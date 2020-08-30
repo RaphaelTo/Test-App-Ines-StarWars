@@ -1,5 +1,5 @@
 import React, { useState ,useCallback, useEffect } from 'react';
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
 import Header from '../../components/templates/Header/Header';
 import Content from "../../components/templates/Content/Content";
@@ -12,7 +12,7 @@ const App: React.FunctionComponent = () => {
     const [people, setPeople] = useState({result : []});
 
     const fetchPeopleAPI = useCallback(async () => {
-        const fetchData = await axios.get('http://localhost:4000/api/v1/people/all');
+        const fetchData: AxiosResponse = await axios.get('http://localhost:4000/api/v1/people/all');
         setPeople({result: fetchData.data.result});
     },[]);
 
