@@ -1,0 +1,16 @@
+.atom-people {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.atom-people-items {
+    border: 2px solid black;
+    border-radius: 4px;
+    padding: 20px 40px;
+    margin: 10px
+}
+
+.atom-people a {
+    text-decoration: none;
+    color: black;
+}
