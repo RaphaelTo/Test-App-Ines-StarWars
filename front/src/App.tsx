@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, Route } from "react-router-dom";
 
 import Home from './views/Home/Home';
-import People from './views/People/People';
+import PeoplePage from './views/People/PeoplePage';
 
 const App: React.FunctionComponent = () => {
 
@@ -10,7 +10,7 @@ const App: React.FunctionComponent = () => {
         <div className="App">
             <Switch>
                 <Route exact path='/' component={Home}/>
-                <Route path='/people/:id' component={People} />
+                <Route path='/people/:id' component={PeoplePage} />
             </Switch>
         </div>
     );
