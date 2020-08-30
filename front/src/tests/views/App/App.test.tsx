@@ -2,8 +2,10 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import App from '../../../views/App/App';
 
-test('renders learn react link', () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+describe('view App', () => {
+  test('view App rendered', () => {
+    const getApp = render(<App />);
+
+    expect(getApp).toBeTruthy();
+  });
 });
