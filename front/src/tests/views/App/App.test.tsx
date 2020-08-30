@@ -1,11 +1,45 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import axios, {AxiosResponse} from 'axios';
+import {mocked} from 'ts-jest/dist/util/testing';
+import {render, waitForElement} from '@testing-library/react';
 import App from '../../../views/App/App';
 
-describe('view App', () => {
-  test('view App rendered', () => {
-    const getApp = render(<App />);
+jest.mock('axios');
+const mockedAxios = mocked(axios, true);
 
-    expect(getApp).toBeTruthy();
-  });
+describe('view App', () => {
+    test('view App rendered', () => {
+        const getApp = render(<App/>);
+
+        expect(getApp).toBeTruthy();
+    });
+
+    test('view App rendered PeopleFetch', async () => {
+        const mockResult: AxiosResponse = {
+            config: {},
+            headers: {},
+            request: undefined,
+            status: 200,
+            statusText: "OK",
+            data: {
+                result: [{
+                    name: 'Leia Organa',
+                    height: '150',
+                    mass: '49'
+                }],
+            }
+        };
+        mockedAxios.get.mockResolvedValue(mockResult);
+
+        const {getByTestId, getAllByTestId} = render(<App/>);
+
+        const getLoaderPeople = getByTestId('loadPeople-test');
+        expect(getLoaderPeople.textContent).toBe('0 people trouvé');
+
+
+        await waitForElement(() => getAllByTestId('getPeople-test'));
+
+        const getPeople = getAllByTestId('people-test').map(people => people.textContent);
+        expect(getPeople).toEqual(['Leia Organa', '150', '49'])
+    })
 });
