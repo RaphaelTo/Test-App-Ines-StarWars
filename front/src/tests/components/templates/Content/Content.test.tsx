@@ -30,7 +30,7 @@ describe('template Content', () => {
    });
 
    test('template Content return atom Button', () => {
-       const { getByTestId } = render(<Content nameButton="Raphael le bg"/>);
+       const { getByTestId } = render(<Content activateButton={true} nameButton="Raphael le bg"/>);
 
        const getButton = getByTestId('button-test');
 
@@ -39,7 +39,7 @@ describe('template Content', () => {
    });
 
     test('template Content return atom Button less props', () => {
-        const { getByTestId } = render(<Content />);
+        const { getByTestId } = render(<Content activateButton={true}/>);
 
         const getButton = getByTestId('button-test');
 
@@ -47,7 +47,7 @@ describe('template Content', () => {
     });
 
     test('template Content return atom Button and add props onClickButton and try to click', () => {
-        const { getByTestId } = render(<Content onClickButton={() => getByTestId('button-test').textContent = 'clicked'}/>);
+        const { getByTestId } = render(<Content activateButton={true} onClickButton={() => getByTestId('button-test').textContent = 'clicked'}/>);
 
         const getButton = getByTestId('button-test');
         fireEvent.click(getButton);

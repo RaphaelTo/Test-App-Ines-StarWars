@@ -9,7 +9,7 @@ interface IPropsSearch {
     idInput?: string,
     typeInput?: string,
     [index:string]: any,
-    onChangeInput: any
+    onChangeInput?: any
 }
 
 const Search: React.FunctionComponent<IPropsSearch> = ({

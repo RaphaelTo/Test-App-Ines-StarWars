@@ -18,7 +18,7 @@ const Content: React.FunctionComponent<IPropsContent> = ({
                                                                  mass: 'Default mass'
                                                              }],
                                                              nameButton = 'Valider',
-                                                             activateButton,
+                                                             activateButton = true,
                                                              onClickButton
                                                          }) => {
     return (
