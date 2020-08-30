@@ -7,6 +7,7 @@ import Button from "../../atoms/Button/Button";
 interface IPropsContent {
     peoples?: Array<object>
     nameButton?: string,
+    activateButton?: boolean
     onClickButton?: any
 }
 
@@ -17,13 +18,14 @@ const Content: React.FunctionComponent<IPropsContent> = ({
                                                                  mass: 'Default mass'
                                                              }],
                                                              nameButton = 'Valider',
+                                                             activateButton,
                                                              onClickButton
                                                          }) => {
     return (
         <>
             <People peoples={peoples}/>
-            <div className="content-button">
-                <Button onClickButton={onClickButton} name={nameButton}/>
+            <div className="content-button" data-testid="content-button">
+                {activateButton ? <Button onClickButton={onClickButton} name={nameButton}/> : 'Plus rien à charger'}
             </div>
         </>
     )
