@@ -38,6 +38,7 @@ const Home: React.FunctionComponent = () => {
         setSkip(valueSkip + 5);
         console.log(countPeople);
       }
+      setSkip(valueSkip + 5);
       setActiveButton(true);
     }
 
@@ -45,6 +46,7 @@ const Home: React.FunctionComponent = () => {
   };
 
   const seeMorePeopleName = async () => {
+    console.log(skip)
     const getPeopleByName: AxiosResponse = await axios.get(
       `http://localhost:4000/api/v1/people/all?name=${name.newName}&skip=${skip}`
     );
